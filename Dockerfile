@@ -11,6 +11,7 @@ FROM node:lts-alpine
 COPY --from=build_node /app /app
 WORKDIR /app
 RUN cd /app; \
+    . /etc/os-release; \
     echo "${NAME} ${VERSION_ID}" > /version.txt; \
     echo "node $(node --version)" >> /version.txt; \
     echo "pa11y-dashboard $(cat /app/.git/refs/heads/master)" >> /version.txt;
